@@ -1,7 +1,7 @@
 Package: RCM
 Type: Package
 Title: Fit row-column association models with the negative binomial distribution for the microbiome
-Version: 1.29.0
+Version: 1.29.1
 Authors@R: 
     c(person(given = "Stijn", family = "Hawinkel", 
     email = "stijn.hawinkel@psb.ugent.be", 
@@ -19,4 +19,4 @@ VignetteBuilder: knitr
 biocViews: Metagenomics, DimensionReduction, Microbiome, Visualization
 BugReports: https://github.com/CenterForStatistics-UGent/RCM/issues
 URL: https://bioconductor.org/packages/release/bioc/vignettes/RCM/inst/doc/RCMvignette.html/
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.1
