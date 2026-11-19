@@ -12,10 +12,8 @@
 #'
 #' @return a n-by-p matrix of scores
 #' @importFrom VGAM predict
-getRowMat <- function(
-      sampleScore, responseFun,
-      NB_params, taxonCoef, spline
-) {
+getRowMat <- function(sampleScore, responseFun,
+    NB_params, taxonCoef, spline) {
     if (responseFun == "nonparametric") {
         cbind(1, sampleScore, predict(spline,
             x = sampleScore

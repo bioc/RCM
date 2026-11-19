@@ -13,10 +13,8 @@
 #'
 #' @return a vector of with current values of the constraints,
 #'  should evolve to zeroes only
-heq_nb <- function(
-      Alpha, alphaK, d, k, centMat,
-      ...
-) {
+heq_nb <- function(Alpha, alphaK, d, k, centMat,
+    ...) {
     centerFactors <- centMat %*% Alpha # Includes overal centering
     size <- sum(Alpha^2) - 1
     if (k == 1) {

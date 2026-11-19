@@ -2,7 +2,7 @@
 % Please edit documentation in R/F_checkAlias.R
 \name{checkAlias}
 \alias{checkAlias}
-\title{Check for alias structures in a dataframe, and throw an error when one is found}
+\title{Check for alias structures in a dataframe, and throw an error if found}
 \usage{
 checkAlias(datFrame, covariatesNames)
 }
@@ -16,7 +16,7 @@ Throws an error when an alias structure is detected,
 returns invisible otherwise
 }
 \description{
-Check for alias structures in a dataframe, and throw an error when one is found
+Check for alias structures in a dataframe, and throw an error if found
 }
 \examples{
 # Make a dataframe with aliased variables

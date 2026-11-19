@@ -269,8 +269,7 @@ but an overparametrized one.
 One may want to test whether the samples in an unconstrained ordination cluster according to some predefined grouping factor. Since the model is overparametrized, classical statistical tests are invalid. Instead, PERMANOVA is a permutation-based analysis that looks for significant clustering of samples based on distances alone. The only assumption underlying it is exchangeability of the samples, meaning that under the null hypothesis of identical microbiome composition in all groups, the samples are randomly distributed across the ordination. A natural test statistic to detect clusters based on a multidimensional ordination is the pseudo F-statistic. The distribution of this test statistic under the null hypothesis is then emulated by permuting the grouping labels, and recalculating within-group distances and associated pseudo F-statistics for every permutation instances. This is done conditional on the ordination result, so without refitting the RC(M) model. The _permanova_ function accepts variables present in the phyloseq object as groups, or user supplied grouping factors.
 
 ```{r permanova}
-permanovaZeller <- permanova(ZellerRCM2, "Diagnosis")
-permanovaZeller
+(permanovaZeller <- permanova(ZellerRCM2, "Diagnosis"))
 ```
 
 We see that the PERMANOVA analysis for diagnosis is significant with p-value `r round(permanovaZeller$p.value, 3)`, because of the shift of the cancer samples to the left compared to the other two groups. Next we also test for significance of gender:

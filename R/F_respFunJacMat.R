@@ -15,10 +15,8 @@
 #' @param naId The numeric index of the missing values in X
 #'
 #' @return The jacobian, a square matrix of dimension (deg+1)*(p+1)
-respFunJacMat <- function(
-      betas, X, reg, thetaMat,
-      muMarg, psi, v, p, IDmat, IndVec, allowMissingness, naId
-) {
+respFunJacMat <- function(betas, X, reg, thetaMat,
+    muMarg, psi, v, p, IDmat, IndVec, allowMissingness, naId) {
     NBparams <- matrix(betas[seq_len(p * v)],
         ncol = p
     )

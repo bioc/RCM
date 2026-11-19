@@ -45,13 +45,11 @@
 #'     responseFun = "linear", round = TRUE, prevCutOff = 0.03
 #' )
 #' residualPlot(zellerRCMlin)
-residualPlot <- function(
-      RCM, Dim = 1, whichTaxa = "response",
-      resid = "Deviance", numTaxa = 9, mfrow = NULL,
-      samColour = NULL, samShape = NULL, legendLabSize = 15,
-      legendTitleSize = 16, axisLabSize = 14, axisTitleSize = 16,
-      taxTitle = TRUE, h = 0
-) {
+residualPlot <- function(RCM, Dim = 1, whichTaxa = "response",
+    resid = "Deviance", numTaxa = 9, mfrow = NULL,
+    samColour = NULL, samShape = NULL, legendLabSize = 15,
+    legendTitleSize = 16, axisLabSize = 14, axisTitleSize = 16,
+    taxTitle = TRUE, h = 0) {
     if (is.null(RCM$covariates)) {
         stop("Residual plots only implemented for constrained ordinations!")
     }

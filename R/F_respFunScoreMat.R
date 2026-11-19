@@ -19,10 +19,8 @@
 #' @return The evaluation of the score functions, a vector of length (p+1)*
 #' (deg+1)
 #'
-respFunScoreMat <- function(
-      betas, X, reg,
-      thetaMat, muMarg, psi, p, v, allowMissingness, naId, ...
-) {
+respFunScoreMat <- function(betas, X, reg,
+    thetaMat, muMarg, psi, p, v, allowMissingness, naId, ...) {
     NBparams <- matrix(betas[seq_len(p * v)],
         ncol = p
     )

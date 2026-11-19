@@ -18,11 +18,9 @@
 #' @param naId The numeric index of the missing values in X
 #'
 #' @return a symmetric jacobian matrix of size n+k + 1
-NBjacobianRow <- function(
-      beta, X, reg, thetas,
-      muMarg, k, n, p, rowWeights, nLambda,
-      rMatK, preFabMat, Jac, allowMissingness, naId
-) {
+NBjacobianRow <- function(beta, X, reg, thetas,
+    muMarg, k, n, p, rowWeights, nLambda,
+    rMatK, preFabMat, Jac, allowMissingness, naId) {
     rMat <- beta[seq_len(n)]
     mu <- exp(rMat %*% reg) * muMarg
 

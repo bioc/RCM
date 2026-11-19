@@ -29,14 +29,12 @@
 #' @param ... Further arguments passed on to other functions
 #'
 #' @return A symmetric matrix, the evaluated Jacobian
-LR_nb_Jac <- function(
-      Alpha, X, CC, responseFun = c(
-          "linear", "quadratic",
-          "nonparametric", "dynamic"
-      ), psi, NB_params, NB_params_noLab, d, alphaK,
-      k, centMat, nLambda, nLambda1s, thetaMat, muMarg, n, ncols, preFabMat,
-      envGradEst, allowMissingness, naId, ...
-) {
+LR_nb_Jac <- function(Alpha, X, CC, responseFun = c(
+        "linear", "quadratic",
+        "nonparametric", "dynamic"
+    ), psi, NB_params, NB_params_noLab, d, alphaK,
+    k, centMat, nLambda, nLambda1s, thetaMat, muMarg, n, ncols, preFabMat,
+    envGradEst, allowMissingness, naId, ...) {
     did <- seq_len(d)
     # Extract the parameters
     alpha <- Alpha[did]

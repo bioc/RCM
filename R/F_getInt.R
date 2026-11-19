@@ -7,10 +7,8 @@
 #' @param ... additional arguments passed on to integrate()
 #'
 #' @return a scalar, the value of the integral
-getInt <- function(
-      coef, spline, sampleScore,
-      stop.on.error = FALSE, ...
-) {
+getInt <- function(coef, spline, sampleScore,
+    stop.on.error = FALSE, ...) {
     # Absolute values assure positive
     # outcomes
     integrate(

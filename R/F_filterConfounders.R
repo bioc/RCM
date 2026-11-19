@@ -26,10 +26,8 @@
 #' \item{thetas}{new theta estimates}
 #' \item{NB_params}{The estimated parameters of the interaction terms}
 
-filterConfounders <- function(
-      muMarg, confMat, X, thetas, p, n, nleqslv.control,
-      trended.dispersion, tol = 0.001, maxIt = 20, allowMissingness, naId
-) {
+filterConfounders <- function(muMarg, confMat, X, thetas, p, n, nleqslv.control,
+    trended.dispersion, tol = 0.001, maxIt = 20, allowMissingness, naId) {
     NB_params <- matrix(0, ncol(confMat), p)
 
     iter <- 1

@@ -30,3 +30,6 @@ and may include continuous variables}
 \description{
 A function to build the confounder matrices
 }
+\examples{
+buildConfMat(data.frame("num" = runif(5), "log" = c(TRUE, TRUE, FALSE, FALSE, TRUE)), 5)
+}

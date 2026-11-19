@@ -20,11 +20,9 @@
 
 #' @return A vector of length p+1+1+(k-1) with evaluations of the
 #'  derivative of lagrangian
-dNBllcolOld <- function(
-      beta, X, reg, thetas,
-      muMarg, k, p, n, colWeights, nLambda,
-      cMatK, allowMissingness, naId, ...
-) {
+dNBllcolOld <- function(beta, X, reg, thetas,
+    muMarg, k, p, n, colWeights, nLambda,
+    cMatK, allowMissingness, naId, ...) {
     cMat <- matrix(beta[seq_len(p)],
         byrow = TRUE,
         ncol = p, nrow = 1

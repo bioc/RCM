@@ -74,10 +74,8 @@ setGeneric("RCM", function(dat, ...) standardGeneric("RCM"))
 
 #' @rdname RCM
 #' @export
-setMethod("RCM", "phyloseq", function(
-      dat, covariates = NULL,
-      confounders = NULL, ...
-) {
+setMethod("RCM", "phyloseq", function(dat, covariates = NULL,
+    confounders = NULL, ...) {
     # Safer than using @.Data, as this uses the
     # standard conversion function of the package as
     # opposed to the internal representation.
@@ -148,12 +146,10 @@ setMethod("RCM", "phyloseq", function(
 
 #' @rdname RCM
 #' @export
-setMethod("RCM", "matrix", function(
-      dat, k = 2, round = FALSE,
-      prevCutOff = 0.05, minFraction = 0.1, rowWeights = "uniform",
-      colWeights = "marginal", confModelMat = NULL, confTrimMat = NULL,
-      covModelMat = NULL, centMat = NULL, allowMissingness = FALSE, ...
-) {
+setMethod("RCM", "matrix", function(dat, k = 2, round = FALSE,
+    prevCutOff = 0.05, minFraction = 0.1, rowWeights = "uniform",
+    colWeights = "marginal", confModelMat = NULL, confTrimMat = NULL,
+    covModelMat = NULL, centMat = NULL, allowMissingness = FALSE, ...) {
     if (anyNA(dat) && !allowMissingness) {
         stop("Count matrix contains missing values!
              Set 'allowMissingness' to TRUE to allow this. (see ?RCM)")

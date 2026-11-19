@@ -20,12 +20,10 @@
 #' @param naId The numeric index of the missing values in X
 #'
 #' @return A vector of length p with dispersion estimates
-estDisp <- function(
-      X, cMat = NULL, rMat = NULL,
-      muMarg, psis, trended.dispersion = NULL,
-      prior.df = 10, dispWeights = NULL, rowMat = NULL,
-      allowMissingness = FALSE, naId
-) {
+estDisp <- function(X, cMat = NULL, rMat = NULL,
+    muMarg, psis, trended.dispersion = NULL,
+    prior.df = 10, dispWeights = NULL, rowMat = NULL,
+    allowMissingness = FALSE, naId) {
     logMeansMat <- if (!is.null(rMat)) {
         # Unconstrained
         t(rMat %*% (cMat * psis) + log(muMarg))

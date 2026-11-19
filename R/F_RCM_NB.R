@@ -117,27 +117,25 @@
 #' mat <- mat[rowSums(mat) > 0, colSums(mat) > 0]
 #' zellerRCM <- RCM_NB(mat, k = 2)
 #' # Needs to be called directly onto a matrix
-RCM_NB <- function(
-      X, k, rowWeights = "uniform", colWeights = "marginal",
-      tol = 0.001, maxItOut = 1000L, Psitol = 0.001,
-      verbose = FALSE, global = "dbldog", nleqslv.control = list(
-          maxit = 500L,
-          cndtol = 1e-16
-      ), jacMethod = "Broyden", dispFreq = 10L,
-      convNorm = 2, prior.df = 10, marginEst = "MLE",
-      confModelMat = NULL, confTrimMat = NULL, prevCutOff,
-      minFraction = 0.1, covModelMat = NULL, centMat = NULL,
-      responseFun = c(
-          "linear", "quadratic", "dynamic",
-          "nonparametric"
-      ), record = FALSE, control.outer = list(trace = FALSE),
-      control.optim = list(), envGradEst = "LR", dfSpline = 3,
-      vgamMaxit = 100L, degree = switch(responseFun[1],
-          nonparametric = 3,
-          NULL
-      ), rowExp = if (is.null(covModelMat)) 1 else 0.5,
-      colExp = rowExp, allowMissingness = FALSE
-) {
+RCM_NB <- function(X, k, rowWeights = "uniform", colWeights = "marginal",
+    tol = 0.001, maxItOut = 1000L, Psitol = 0.001,
+    verbose = FALSE, global = "dbldog", nleqslv.control = list(
+        maxit = 500L,
+        cndtol = 1e-16
+    ), jacMethod = "Broyden", dispFreq = 10L,
+    convNorm = 2, prior.df = 10, marginEst = "MLE",
+    confModelMat = NULL, confTrimMat = NULL, prevCutOff,
+    minFraction = 0.1, covModelMat = NULL, centMat = NULL,
+    responseFun = c(
+        "linear", "quadratic", "dynamic",
+        "nonparametric"
+    ), record = FALSE, control.outer = list(trace = FALSE),
+    control.optim = list(), envGradEst = "LR", dfSpline = 3,
+    vgamMaxit = 100L, degree = switch(responseFun[1],
+        nonparametric = 3,
+        NULL
+    ), rowExp = if (is.null(covModelMat)) 1 else 0.5,
+    colExp = rowExp, allowMissingness = FALSE) {
     Xorig <- NULL # An original matrix, not returned if no trimming occurs
     responseFun <- responseFun[1]
     if (!responseFun %in% c(
@@ -259,7 +257,6 @@ RCM_NB <- function(
     } else {
         stop("No valid margin estimation paradigm provided!")
     }
-
     rowWeights <- switch(paste(marginEst, rowWeights,
         sep = "_"
     ),
@@ -274,7 +271,6 @@ RCM_NB <- function(
     MLE_marginal = exp(logAbundsMLE),
     rep.int(1 / p, p) # For uniform weights
     )
-
     nLambda <- 2 * k + k * (k - 1) / 2
     if (record) {
         # Pre-allocate arrays to track iterations
@@ -391,13 +387,15 @@ RCM_NB <- function(
             while ((iterOut[KK] == 1) || ((iterOut[KK] <=
                 maxItOut) && (!convergence[KK]))) {
                 if (verbose && iterOut[KK] %% 1 == 0) {
-                    message("\nOuter Iteration ", iterOut[KK],
+                    message(
+                        "\nOuter Iteration ", iterOut[KK],
                         "\n"
                     )
                     if (iterOut[KK] != 1) {
-                      message(
-                            "Old psi-estimate: ", psisOld)
-                      message(
+                        message(
+                            "Old psi-estimate: ", psisOld
+                        )
+                        message(
                             "New psi-estimate: ", psis[KK],
                             "\n"
                         )
@@ -414,7 +412,7 @@ RCM_NB <- function(
                 if ((iterOut[KK] %% dispFreq) == 0 ||
                     (iterOut[KK] == 1)) {
                     if (verbose) {
-                      message(" Estimating overdispersions")
+                        message(" Estimating overdispersions")
                     }
                     thetas[, paste0("Dim", KK)] <- estDisp(
                         X = X,
@@ -436,7 +434,7 @@ RCM_NB <- function(
                 }
                 # Psis
                 if (verbose) {
-                  message("Estimating psis")
+                    message("Estimating psis")
                 }
                 regPsis <- outer(rMat[, KK], cMat[KK, ])
                 psiTry <- try(abs(nleqslv(
@@ -456,7 +454,7 @@ RCM_NB <- function(
 
                 # Row scores
                 if (verbose) {
-                  message("Estimating row scores")
+                    message("Estimating row scores")
                 }
                 regRow <- cMat[KK, , drop = FALSE] * psis[KK]
                 tmpRow <- nleqslv(
@@ -475,7 +473,7 @@ RCM_NB <- function(
                 )
 
                 if (verbose) {
-                  message(ifelse(tmpRow$termcd == 1, "Row scores converged",
+                    message(ifelse(tmpRow$termcd == 1, "Row scores converged",
                         "Row scores DID NOT converge"
                     ))
                 }
@@ -493,7 +491,7 @@ RCM_NB <- function(
 
                 # Column scores
                 if (verbose) {
-                  message("Estimating column scores")
+                    message("Estimating column scores")
                 }
                 regCol <- rMat[, KK, drop = FALSE] *
                     psis[KK]
@@ -638,7 +636,7 @@ RCM_NB <- function(
             (k - 1) / 2)))
         for (KK in seq_len(k)) {
             if (verbose) {
-              message("Dimension", KK, "is being esimated")
+                message("Dimension", KK, "is being esimated")
             }
 
             # Modify offset if needed
@@ -669,14 +667,13 @@ RCM_NB <- function(
             while ((iterOut[KK] == 1) || ((iterOut[KK] <=
                 maxItOut) && (!convergence[KK]))) {
                 if (verbose && iterOut[KK] %% 1 == 0) {
-                  message("\nOuter Iteration ", iterOut[KK]
-                    )
+                    message("\nOuter Iteration ", iterOut[KK])
                     if (iterOut[KK] != 1 && responseFun !=
                         "nonparametric") {
-                      message(
+                        message(
                             "Old psi-estimate: ", psisOld
                         )
-                      message(
+                        message(
                             "New psi-estimate: ", psis[KK],
                             "\n"
                         )
@@ -701,7 +698,7 @@ RCM_NB <- function(
                 if ((iterOut[KK] %% dispFreq) == 0 ||
                     iterOut[KK] == 1) {
                     if (verbose) {
-                      message("Estimating overdispersions")
+                        message("Estimating overdispersions")
                     }
                     thetas[, paste0("Dim", KK)] <- estDisp(
                         X = X,
@@ -720,7 +717,7 @@ RCM_NB <- function(
                 if (responseFun %in% c("linear", "quadratic", "dynamic")) {
                     # Psis
                     if (verbose) {
-                      message("\n Estimating psis (k = ", KK, ") \n", sep = "")
+                        message("\n Estimating psis (k = ", KK, ") \n", sep = "")
                     }
                     psis[KK] <- abs(nleqslv(
                         fn = dNBpsis,
@@ -732,7 +729,7 @@ RCM_NB <- function(
                     )$x)
 
                     if (verbose) {
-                      message("\n Estimating response function \n")
+                        message("\n Estimating response function \n")
                     }
                     NB_params[, , KK] <- estNBparams(
                         design = design,
@@ -764,7 +761,7 @@ RCM_NB <- function(
                         )
                     }
                     if (verbose) {
-                      message("\n Estimating environmental gradient \n")
+                        message("\n Estimating environmental gradient \n")
                     }
                     AlphaTmp <- nleqslv(
                         x = c(alpha[
@@ -789,7 +786,7 @@ RCM_NB <- function(
                     lambdasAlpha[seq_k(KK, nLambda1s)] <- AlphaTmp[-seq_len(d)]
                 } else {
                     if (verbose) {
-                      message("\n Estimating response functions \n")
+                        message("\n Estimating response functions \n")
                     }
                     nonParamRespFun[[KK]] <- estNPresp(
                         sampleScore = sampleScore,
@@ -802,7 +799,7 @@ RCM_NB <- function(
                         allowMissingness = allowMissingness, naId = naId
                     )
                     if (verbose) {
-                      message("\n Estimating environmental gradient \n")
+                        message("\n Estimating environmental gradient \n")
                     }
                     AlphaTmp <- constrOptim.nl(
                         par = alpha[, KK],
@@ -879,10 +876,8 @@ RCM_NB <- function(
                 seq_len(k)
             )
         }
-
         rownames(alpha) <- colnames(covModelMat)
         colnames(alpha) <- paste0("Dim", seq_len(k))
-
         returnList <- list(
             fit = "RCM_NB_constr", lambdaCol = lambdaCol,
             alpha = alpha, alphaRec = alphaRec, covariates = covModelMat,
@@ -893,12 +888,12 @@ RCM_NB <- function(
         )
     }
     if (!all(convergence)) {
-        warning(paste0(
+        warning(
             "Algorithm did not converge for dimensions ",
             paste(which(!convergence), collapse = ","),
             "! Check for errors or consider changing tolerances
         or number of iterations"
-        ))
+        )
     }
     return(c(returnList, list(
         converged = convergence,

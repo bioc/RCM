@@ -25,15 +25,13 @@
 #'
 #' @return: a scalar, the evaluation of the log-likelihood ratio
 #'  at the given alpha
-LR_nb <- function(
-      Alpha, X, CC, responseFun = c(
-          "linear",
-          "quadratic", "nonparametric", "dynamic"
-      ),
-      muMarg, psi, nleqslv.control = list(trace = FALSE),
-      n, NB_params, NB_params_noLab, thetaMat,
-      ncols, nonParamRespFun, envGradEst, ...
-) {
+LR_nb <- function(Alpha, X, CC, responseFun = c(
+        "linear",
+        "quadratic", "nonparametric", "dynamic"
+    ),
+    muMarg, psi, nleqslv.control = list(trace = FALSE),
+    n, NB_params, NB_params_noLab, thetaMat,
+    ncols, nonParamRespFun, envGradEst, ...) {
     sampleScore <- CC %*% Alpha
     if (responseFun %in% c(
         "linear", "quadratic",

@@ -13,10 +13,8 @@
 #' @param naId The numeric index of the missing values in X
 #'
 #' @return The jacobian (a v-by-v matrix)
-JacCol_constr_noLab <- function(
-      betas, X,
-      reg, thetasMat, muMarg, psi, n, v, preFabMat, allowMissingness, naId
-) {
+JacCol_constr_noLab <- function(betas, X,
+    reg, thetasMat, muMarg, psi, n, v, preFabMat, allowMissingness, naId) {
     mu <- c(exp(reg %*% betas * psi)) * muMarg
     if (allowMissingness) {
         preFabMat <- 1 + correctXMissingness(X, mu, allowMissingness, naId) / thetasMat

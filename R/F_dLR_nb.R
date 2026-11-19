@@ -28,15 +28,13 @@
 #' @param ... further arguments passed on to other methods
 #'
 #' @return: The value of the lagrangian and the constraining equations
-dLR_nb <- function(
-      Alpha, X, CC, responseFun = c(
-          "linear",
-          "quadratic", "nonparametric", "dynamic"
-      ),
-      psi, NB_params, NB_params_noLab, d, alphaK,
-      k, centMat, nLambda, nLambda1s, thetaMat,
-      muMarg, ncols, envGradEst, allowMissingness, naId, ...
-) {
+dLR_nb <- function(Alpha, X, CC, responseFun = c(
+        "linear",
+        "quadratic", "nonparametric", "dynamic"
+    ),
+    psi, NB_params, NB_params_noLab, d, alphaK,
+    k, centMat, nLambda, nLambda1s, thetaMat,
+    muMarg, ncols, envGradEst, allowMissingness, naId, ...) {
     # Extract the parameters
     alpha <- Alpha[seq_len(d)]
     lambda1s <- Alpha[d + seq_len(nLambda1s)]

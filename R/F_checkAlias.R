@@ -1,4 +1,4 @@
-#' Check for alias structures in a dataframe, and throw an error when one is found
+#' Check for alias structures in a dataframe, and throw an error if found
 #' @param datFrame the data frame to be checked for alias structure
 #' @param covariatesNames The names of the variables to be considered
 #'

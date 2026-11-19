@@ -18,11 +18,9 @@
 
 #' @return A vector of length n + k +1 with evaluations of the
 #'  derivative of the lagrangian
-dNBllrow <- function(
-      beta, X, reg, thetas,
-      muMarg, k, n, p, rowWeights, nLambda,
-      rMatK, allowMissingness, naId, ...
-) {
+dNBllrow <- function(beta, X, reg, thetas,
+    muMarg, k, n, p, rowWeights, nLambda,
+    rMatK, allowMissingness, naId, ...) {
     rMat <- matrix(beta[seq_len(n)],
         byrow = FALSE,
         ncol = 1, nrow = n

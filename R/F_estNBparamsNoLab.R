@@ -22,11 +22,9 @@
 #'  a linear response function is fitted instead
 #'
 #' @return a v-by-p matrix of parameters of the response function
-estNBparamsNoLab <- function(
-      design, thetasMat,
-      muMarg, psi, X, nleqslv.control, initParam,
-      n, v, dynamic, envRange, preFabMat, allowMissingness, naId
-) {
+estNBparamsNoLab <- function(design, thetasMat,
+    muMarg, psi, X, nleqslv.control, initParam,
+    n, v, dynamic, envRange, preFabMat, allowMissingness, naId) {
     # Without taxon Labels
     nleq <- nleqslv(
         x = initParam, reg = design,

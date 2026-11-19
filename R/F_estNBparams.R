@@ -21,11 +21,9 @@
 #' a linear response function is fitted instead
 #'
 #' @return a v-by-p matrix of parameters of the response function
-estNBparams <- function(
-      design, thetas, muMarg,
-      psi, X, nleqslv.control, ncols, initParam,
-      v, dynamic = FALSE, envRange, allowMissingness, naId
-) {
+estNBparams <- function(design, thetas, muMarg,
+    psi, X, nleqslv.control, ncols, initParam,
+    v, dynamic = FALSE, envRange, allowMissingness, naId) {
     vapply(seq_len(ncols), FUN.VALUE = vector("numeric", v), function(i) {
         nleq <- nleqslv(initParam[, i],
             reg = design,

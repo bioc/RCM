@@ -8,10 +8,8 @@
 #' @param naId The numeric index of the missing values in X
 #'
 #' @return a diagonal matrix of dimension n: the Fisher information matrix
-NBjacobianLibSizes <- function(
-      beta, X, reg,
-      thetas, allowMissingness, naId
-) {
+NBjacobianLibSizes <- function(beta, X, reg,
+    thetas, allowMissingness, naId) {
     mu <- exp(outer(beta, reg, "+"))
     X <- correctXMissingness(X, mu, allowMissingness, naId)
     diag(-rowSums((1 + (X / thetas)) * mu / (1 +

@@ -11,10 +11,8 @@
 #' Should be called prior to fitting the independence model
 #'
 #' @return A trimmed data matrix nxp'
-trimOnConfounders <- function(
-      confounders,
-      X, prevCutOff, minFraction, n
-) {
+trimOnConfounders <- function(confounders,
+    X, prevCutOff, minFraction, n) {
     trimmingID <- apply(X, 2, function(x) {
         # Over taxa Over confounding variables
         any(apply(confounders, 2, function(conf) {

@@ -11,10 +11,8 @@
 
 #' @return A vector of the same length as beta with evaluations
 #'  of the score function
-dNBllcolNP <- function(
-      beta, X, reg, theta,
-      muMarg, allowMissingness, naId, ...
-) {
+dNBllcolNP <- function(beta, X, reg, theta,
+    muMarg, allowMissingness, naId, ...) {
     mu <- exp(reg %*% beta) * muMarg
     X <- correctXMissingness(X, mu, allowMissingness, naId)
     crossprod(reg, ((X - mu) / (1 + mu / theta)))

@@ -20,6 +20,8 @@
 #' @importFrom stats model.matrix
 #' @rdname buildConfMat
 #' @export
+#' @examples
+#' buildConfMat(data.frame("num" = runif(5), "log" = c(TRUE, TRUE, FALSE, FALSE, TRUE)), 5)
 setGeneric("buildConfMat", function(x, ...) standardGeneric("buildConfMat"))
 
 #' buildConfMat.data.frame

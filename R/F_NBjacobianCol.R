@@ -20,11 +20,9 @@
 #' @param naId The numeric index of the missing values in X
 #'
 #' @return A matrix of dimension p+1+1+(k-1) with evaluations of the Jacobian
-NBjacobianColOld <- function(
-      beta, X, reg, thetas,
-      muMarg, k, n, p, colWeights, nLambda,
-      cMatK, preFabMat, Jac, allowMissingness, naId
-) {
+NBjacobianColOld <- function(beta, X, reg, thetas,
+    muMarg, k, n, p, colWeights, nLambda,
+    cMatK, preFabMat, Jac, allowMissingness, naId) {
     cMat <- beta[seq_len(p)]
 
     # Calculate the mean
@@ -48,9 +46,11 @@ NBjacobianColOld <- function(
         beta[p + 2] * colWeights
     Jac
 }
-NBjacobianCol <- function(beta, X, reg, thetas,
-    muMarg, k, n, p, colWeights, nLambda,
-    cMatK, preFabMat, Jac, allowMissingness, naId) {
+NBjacobianCol <- function(
+      beta, X, reg, thetas,
+      muMarg, k, n, p, colWeights, nLambda,
+      cMatK, preFabMat, Jac, allowMissingness, naId
+) {
     # Calculate the mean
     mu <- exp(reg * beta) * muMarg
     if (allowMissingness) {

@@ -8,8 +8,10 @@
 #' @return a list with eigenvalues, aliased variables and environmentam gradients
 #' @details the vegan version, adapted for flexible powers rowExp and colExp
 #' @importFrom stats weighted.mean
-constrCorresp <- function(X, Y, rowExp, colExp,
-    muMarg = outer(rowSums(X), colSums(X)) / sum(X)) {
+constrCorresp <- function(
+      X, Y, rowExp, colExp,
+      muMarg = outer(rowSums(X), colSums(X)) / sum(X)
+) {
     X <- X / sum(X)
     RW <- rowSums(X)
     CW <- colSums(X)
